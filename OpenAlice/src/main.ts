@@ -1,4 +1,5 @@
 import { anthropic } from '@ai-sdk/anthropic'
+import { createOpenAI } from '@ai-sdk/openai'
 import { readFile, writeFile, appendFile, mkdir } from 'fs/promises'
 import { resolve } from 'path'
 import { Engine } from './core/engine.js'
@@ -56,7 +57,18 @@ const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
 async function main() {
   const config = await loadConfig()
-  const model = anthropic(config.model.model)
+
+  // Initialize AI model based on provider config
+  let model
+  if (config.model.provider === 'openai') {
+    const openai = createOpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      baseURL: process.env.OPENAI_BASE_URL,
+    })
+    model = openai(config.model.model)
+  } else {
+    model = anthropic(config.model.model)
+  }
 
   // ==================== Infrastructure ====================
 
