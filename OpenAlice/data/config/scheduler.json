@@ -1,0 +1,16 @@
+{
+  "heartbeat": {
+    "enabled": true,
+    "every": "30m",
+    "ackToken": "HEARTBEAT_OK",
+    "ackMaxChars": 50
+  },
+  "cron": {
+    "enabled": true
+  },
+  "delivery": {
+    "dir": "data/delivery",
+    "retryIntervalMs": 60000,
+    "maxRetries": 5
+  }
+}

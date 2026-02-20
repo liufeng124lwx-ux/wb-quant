@@ -1,0 +1,30 @@
+node_modules/
+dist/
+logs/
+/data/*
+!/data/config/
+state.json
+*.log
+
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test
+coverage/
+
+# Claude Code project config (internal use only)
+CLAUDE.md
+
+# Runtime state (written by writeAIConfig, not project config)
+data/config/ai-provider.json
